@@ -18,6 +18,8 @@ class AgentWorker(config : Config) extends AgentWorkerInterface {
 
   val jdbc = s"jdbc:mysql://$fqdn:$port/metricize"
 
+  def needsRescheduling_? : Boolean = true
+
   def process(): AgentResponse = {
     MYSQLWorker.executeMysqlWorker(jdbc, username, password, queryString)
   }
