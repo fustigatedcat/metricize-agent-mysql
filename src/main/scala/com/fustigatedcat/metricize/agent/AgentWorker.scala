@@ -14,10 +14,12 @@ class AgentWorker(config : Config) extends AgentWorkerInterface {
 
   val port = config.getString("port")
 
+  val queryString = config.getString("queryString")
+
   val jdbc = s"jdbc:mysql://$fqdn:$port/metricize"
 
   def process(): AgentResponse = {
-    MYSQLWorker.executeMysqlWorker(jdbc, username, password, "SELECT * FROM Customer")
+    MYSQLWorker.executeMysqlWorker(jdbc, username, password, queryString)
   }
 
 }
