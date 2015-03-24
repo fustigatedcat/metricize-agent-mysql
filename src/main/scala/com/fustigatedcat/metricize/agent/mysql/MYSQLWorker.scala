@@ -35,9 +35,9 @@ object MYSQLWorker {
       val end = System.currentTimeMillis()
       val rtn = handleResultSet(rs, rs.getMetaData)
       conn.close()
-      AgentResponseSuccess(end - start, prettyJson(renderJValue(rtn)))
+      AgentResponseSuccess(start, end - start, prettyJson(renderJValue(rtn)))
     } catch {
-      case err: Throwable => AgentResponseFailure(System.currentTimeMillis() - start, err.getLocalizedMessage)
+      case err: Throwable => AgentResponseFailure(start, System.currentTimeMillis() - start, err.getLocalizedMessage)
     }
   }
 
