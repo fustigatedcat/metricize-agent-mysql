@@ -6,6 +6,8 @@ import com.typesafe.config.Config
 
 class MYSQLAgentWorker(config : Config) extends AgentWorkerInterface {
 
+  Class.forName("com.mysql.jdbc.Driver")
+
   val fqdn = config.getString("fqdn")
 
   val username = config.getString("username")
@@ -16,7 +18,9 @@ class MYSQLAgentWorker(config : Config) extends AgentWorkerInterface {
 
   val queryString = config.getString("queryString")
 
-  val jdbc = s"jdbc:mysql://$fqdn:$port/metricize"
+  val dbName = config.getString("dbName")
+
+  val jdbc = s"jdbc:mysql://$fqdn:$port/$dbName"
 
   def needsRescheduling_? : Boolean = true
 

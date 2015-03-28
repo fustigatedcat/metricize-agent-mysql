@@ -9,8 +9,6 @@ import org.json4s.native._
 
 object MYSQLWorker {
 
-  Class.forName("com.mysql.jdbc.Driver")
-
   def handleResultSet(rs : ResultSet, rsmd : ResultSetMetaData, out : List[JObject] = List()) : JArray = rs.next() match {
     case true => {
       val arr = JObject((for(col <- 0 until rsmd.getColumnCount) yield {
