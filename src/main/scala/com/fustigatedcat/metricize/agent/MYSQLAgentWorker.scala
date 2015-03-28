@@ -4,7 +4,7 @@ import com.fustigatedcat.metricize.agent.intf.{AgentResponse, AgentWorkerInterfa
 import com.fustigatedcat.metricize.agent.mysql.MYSQLWorker
 import com.typesafe.config.Config
 
-class AgentWorker(config : Config) extends AgentWorkerInterface {
+class MYSQLAgentWorker(config : Config) extends AgentWorkerInterface {
 
   val fqdn = config.getString("fqdn")
 
